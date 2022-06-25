@@ -1,0 +1,20 @@
+{
+    "name": "lunoxis/instagram",
+    "description": "This library is based on the Instagram web version. We develop it because nowadays it is hard to get an approved Instagram application. The purpose is to support every feature that the web desktop and mobile version support",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "7.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Instagram\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "amir",
+            "email": "dev.lunoxis@gmail.com"
+        }
+    ]
+}
