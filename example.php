@@ -37,5 +37,5 @@ print_r($all->GetHighLight());*/
 print_r($all->HighLightLink());*/
 
 //-------------  GET Account Info ---------------------//
-$info = new \Instagram\Media\info('click.ir');
+$info = new \Instagram\Media\Info('click.ir');
 echo $info->GetInfo()[0]['username'];
