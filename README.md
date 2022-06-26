@@ -26,7 +26,7 @@ Get Account Info By Username
 ```php
 require __DIR__.'/vendor/autoload.php';
 
-$info = new \Instagram\Media\info('click.ir');
+$info = new \Instagram\Media\Info('click.ir');
 Get All Info
 print_r($info->GetInfo());
 Get Info
