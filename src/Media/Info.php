@@ -10,7 +10,7 @@ use Instagram\Exception\InstagramInvalidException;
 use Instagram\Exception\InstagramLoginException;
 use Instagram\Url\UserAgent;
 
-class info{
+class Info{
     /**
      * Undocumented variable
      *
