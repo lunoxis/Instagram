@@ -63,9 +63,7 @@ class Instagram
             $data = json_decode((string) $exception->getResponse()->getBody());
 
             if ($data && $data->message === 'checkpoint_required') {
-                // @codeCoverageIgnoreStart
-               
-                // @codeCoverageIgnoreEnd
+                throw new InstagramLoginException('Please deactivate your account in two steps');
             } else {
                 throw new InstagramLoginException('Unknown error, please report it with a GitHub issue. ' . $exception->getMessage());
             }
