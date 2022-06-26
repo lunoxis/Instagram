@@ -2,7 +2,7 @@
 This is a simple library for extracting media from Instagram. 
 
 ## Dependencies
-- PHP >= 7.2
+- PHP >= 8.0.6
 
 ## Login Example
 ```php
