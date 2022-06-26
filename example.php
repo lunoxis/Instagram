@@ -1,7 +1,5 @@
 <?php
 
-use Instagram\Media\AllStory;
-
 require __DIR__.'/vendor/autoload.php';
 //--------------- Login and Create Session-----------------------//
 /*$ig = new Instagram\Login\Instagram('USERNAME', 'PASSWORD');
