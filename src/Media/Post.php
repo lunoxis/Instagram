@@ -24,13 +24,28 @@ class Post{
      */
     private array $info = [];
     /**
+     * Undocumented variable
+     *
+     * @var array
+     */
+    private array $Url = [];
+    /**
      * Undocumented function
      *
-     * @return void
+     * @return array
      */
     public function GetPost()
     {
         return $this->info;
+    }
+    /**
+     * Undocumented function
+     *
+     * @return array
+     */
+    public function GetLink()
+    {
+        return $this->Url;
     }
     /**
      * Undocumented function
@@ -62,7 +77,7 @@ class Post{
                         {
                             if(isset($value->video_versions))
                             {
-                                $this->info[] = 
+                                $this->Url[] = 
                                 [
                                     'video_link'=>$value->video_versions[0]->url,
                                     'video_duration'=>$body->items[0]->video_duration,
@@ -70,7 +85,7 @@ class Post{
                                 ];
                             }else
                             {
-                                $this->info[] = 
+                                $this->Url[] = 
                                 [
                                     'image_link'=>$value->image_versions2->candidates[0]->url
                                 ];
@@ -78,14 +93,14 @@ class Post{
                         }
                     }elseif(isset($body->items[0]->video_versions))
                     {
-                        $this->info[] = 
+                        $this->Url[] = 
                         [
                             'video_link' => $body->items[0]->video_versions[0]->url,
                             'video_duration'=>$body->items[0]->video_duration,
                             'view_count'=>$body->items[0]->view_count
                         ];
                     }else{
-                        $this->info[] = 
+                        $this->Url[] = 
                         [
                             'image_link' => $body->items[0]->image_versions2->candidates[0]->url
                         ];
