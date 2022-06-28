@@ -17,7 +17,13 @@ class Story{
      *
      * @var [type]
      */
-    public $Link;
+    public $Link = [];
+     /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
+    public $Info;
     /**
      * Undocumented variable
      *
@@ -27,11 +33,21 @@ class Story{
     /**
      * Undocumented function
      *
-     * @return string
+     * @return array
      */
-    public function GetLink() : string
+    public function GetLink() : array
     {
         return $this->Link;
+    }
+    /**
+     * Undocumented function
+     * 
+     * @return string
+     */
+     
+    public function GetInfo() : mixed
+    {
+        return $this->Info;
     }
     /**
      * Undocumented function
@@ -81,10 +97,18 @@ class Story{
                     {
                         if(!isset($value->video_versions))
                         {
-                            $this->Link= $value->image_versions2->candidates[0]->url;
+                            $this->Link['image']= $value->image_versions2->candidates[0]->url;
                         }else
                         {
-                            $this->Link =  $value->video_versions[0]->url;
+                            $this->Link['video'] =  $value->video_versions[0]->url;
+                        }
+                        
+                        if(isset($value->story_bloks_stickers[0]->bloks_sticker->sticker_data->ig_mention->username)){
+                            $this->Info = $value->story_bloks_stickers[0]->bloks_sticker->sticker_data->ig_mention->username;
+                        }elseif(isset($value->story_link_stickers[0]->story_link->url)){
+                            $this->Info = $value->story_link_stickers[0]->story_link->url;
+                        }else{
+                            $this->Info = null ; 
                         }
                     }
                 }
