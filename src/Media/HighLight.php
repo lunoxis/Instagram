@@ -17,7 +17,7 @@ class HighLight{
      *
      * @var [type]
      */
-    public $link;
+    public $link = [];
     /**
      * Undocumented variable
      *
@@ -68,9 +68,9 @@ class HighLight{
                 {
                     if(isset($value->video_versions))
                     {
-                        $this->link = $value->video_versions[0]->url;
+                        $this->link['video'] = $value->video_versions[0]->url;
                     }else{  
-                        $this->link = $value->image_versions2->candidates[0]->url;
+                        $this->link['image'] = $value->image_versions2->candidates[0]->url;
                     }
                     break;
                 }
