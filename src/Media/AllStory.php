@@ -17,7 +17,7 @@ class AllStory{
      *
      * @var array
      */
-    public array $Link = [];
+    public $Link = [];
 
     /**
      * Undocumented variable
@@ -100,7 +100,7 @@ class AllStory{
 
                     foreach($body->reel->items as $key=>$value)
                     {
-                        if(isset($key->video_versions))
+                        if(isset($value->video_versions))
                         {
                             $this->Link[] =  $value->video_versions[0]->url;
                         }else
