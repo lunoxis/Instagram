@@ -35,16 +35,11 @@ class Instagram
             ],
         ]);
 
-        preg_match(
-            '/<script type="text\/javascript">window\._sharedData\s?=(.+);<\/script>/',
-            (string) $baseRequest->getBody(),
-            $matches
-        );
+        preg_match('/\\\"csrf_token\\\":\\\"(.*?)\\\"/', $baseRequest->getBody(), $matches);
         if (!isset($matches[1])) {
-            throw new InstagramLoginException('Unable to extract JSON data');
+            throw new InstagramLoginException('Csrf Token !');
         }
 
-        $data = json_decode($matches[1]);
         try {
             $query = $this->client->request('POST', URLs::LOGIN_URL, [
                 'form_params' => [
@@ -52,16 +47,16 @@ class Instagram
                     'enc_password' => '#PWD_INSTAGRAM_BROWSER:0:' . time() . ':' . $this->password,
                 ],
                 'headers'     => [
-                    'cookie'      => 'ig_cb=1; csrftoken=' . $data->config->csrf_token,
+                    'cookie'      =>'csrftoken='.$matches[1].';',
                     'referer'     => URLs::BASE_URL,
-                    'x-csrftoken' => $data->config->csrf_token,
+                    'x-csrftoken' => $matches[1],
                     'user-agent'  => UserAgent::AGENT_URL,
                 ],
                 'cookies'     => $this->cookie,
             ]);
         } catch (ClientException $exception) {
             $data = json_decode((string) $exception->getResponse()->getBody());
-
+			print_r($data);
             if ($data && $data->message === 'checkpoint_required') {
                 throw new InstagramLoginException('Please deactivate your account in two steps');
             } else {
@@ -70,8 +65,10 @@ class Instagram
         }
 
          $response = json_decode($query->getBody());
+		 print_r($this->cookie);
         if (property_exists($response, 'authenticated') && $response->authenticated) {
-             return $this->cookie;
+            return $this->cookie;
+			
         } else if (property_exists($response, 'error_type') && $response->error_type === 'generic_request_error') {
             throw new InstagramLoginException('Generic error / Your IP may be block from Instagram. You should consider using a proxy.');
         } else {
