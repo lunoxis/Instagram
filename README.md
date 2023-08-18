@@ -7,7 +7,7 @@ This is a simple library for extracting media from Instagram.
 ## Login Example
 ```php
 require __DIR__.'/vendor/autoload.php';
-$ig = new Instagram\Login\Instagram('insaf.life', 'Xurshidbek_2002');
+$ig = new Instagram\Login\Instagram('Username', 'Pass');
 $cooki = $ig->login();
 $session = new \Instagram\Login\Session();
 print_r($session->SetSession($cooki->getCookieByName('rur')->getValue(),$cooki->getCookieByName('csrftoken')->getValue(),$cooki->getCookieByName('sessionid')->getValue(),$cooki->getCookieByName('ds_user_id')->getValue()));
